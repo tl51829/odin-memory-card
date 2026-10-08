@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import '../styles/App.css'
+import { useState } from 'react';
+import Card from './Card';
+import '../styles/App.css';
 
 function App() {
   const [scores, setScores] = useState([0, 0]); // [currScore, bestScore]
@@ -18,7 +19,7 @@ function App() {
     <>
       <header>
         <section>
-          <h1>Detective Conan Memory Game</h1>
+          <h1>Pokemon Memory Game</h1>
           <aside>
             <p>Score: {score}</p>
             <p>Best score: {bestScore}</p>
@@ -27,10 +28,16 @@ function App() {
         <p>Get points by clicking on an image but don't click on any more than once!</p>
       </header>
       <main>
-        <figure>
-          <img src="" alt="" />
-          <figcaption></figcaption>
-        </figure>
+        <Card name="eevee">Eevee</Card>
+        <Card name="eevee" isShiny={true}>Shiny Eevee</Card>
+        <Card name="vaporeon">Vaporeon</Card>
+        <Card name="jolteon">Jolteon</Card>
+        <Card name="flareon">Flareon</Card>
+        <Card name="espeon">Espeon</Card>
+        <Card name="umbreon">Umbreon</Card>
+        <Card name="leafeon">Leafeon</Card>
+        <Card name="glaceon">Glaceon</Card>
+        <Card name="sylveon">Sylveon</Card>
       </main>
     </>
   )
