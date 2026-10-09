@@ -3,7 +3,7 @@
 
 :root {
     font-family: Roboto, sans-serif;
-    background: linear-gradient(225deg, rgb(196, 164, 132), white);
+    background: linear-gradient(225deg, #65D0F4, white);
 
     padding: 24px;
 }
@@ -12,4 +12,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+h1,figcaption, p {
+  color: darkslateblue;
 }

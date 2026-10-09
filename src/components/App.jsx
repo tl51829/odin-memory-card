@@ -44,6 +44,7 @@ function App() {
       const newScore = score + 1;
       if (newScore >= EEVEES.length) {
         setEeveesLeft([...EEVEES]);
+        console.log("Congrats :3");
       } else {
         setEeveesLeft(eeveesLeft.filter((eevee) => eevee !== eeveeClicked));
       } 
