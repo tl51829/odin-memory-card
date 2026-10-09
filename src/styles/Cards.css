@@ -12,6 +12,10 @@ main figure {
     border-radius: 16px;
 }
 
+main figure:hover {
+    background-color: #F0E76F;
+}
+
 main img {
     width: 280px;
 }
