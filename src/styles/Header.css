@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+header section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header section h1 {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+header aside {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+header aside p {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
