@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export default function Card({ children, name, isShiny = false }) {
-    const [url, setUrl] = useState("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png");
+export default function Card({ children, name, handleOnClick }) {
+    const [url, setUrl] = useState("#");
 
     useEffect(() => {
         let ignore = false;
@@ -9,18 +9,17 @@ export default function Card({ children, name, isShiny = false }) {
             .then(response => response.json())
             .then(json => {
                 if (!ignore) {
-                    const version = isShiny ? "shiny" : "default";
-                    const spriteUrl = json["sprites"]["other"]["official-artwork"][`front_${version}`];
+                    const spriteUrl = json["sprites"]["other"]["official-artwork"]["front_default"];
                     setUrl(spriteUrl);
                 }
             });
         return () => {
             ignore = true;
         };
-    }, [name, isShiny]);
+    }, [name]);
 
     return (
-        <figure>
+        <figure onClick={() => handleOnClick(name)}>
             <img src={url} alt="" />
             <figcaption>{children}</figcaption>
         </figure>

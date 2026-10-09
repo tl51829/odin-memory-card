@@ -2,17 +2,58 @@ import { useState } from 'react';
 import Card from './Card';
 import '../styles/App.css';
 
-function App() {
-  const [scores, setScores] = useState([0, 0]); // [currScore, bestScore]
-  const score = scores[0];
-  const bestScore = scores[1];
+const EEVEES = [
+    "eevee",
+    "vaporeon",
+    "jolteon",
+    "flareon",
+    "espeon",
+    "umbreon",
+    "leafeon",
+    "glaceon",
+    "sylveon"
+  ];
 
-  function handleSetScores(newScore) {
-    const newScores = [newScore, bestScore];
-    if (newScore > bestScore) {
-      newScores[1] = newScore;
+// Fisher-Yates shuffle
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
+function App() {
+  const [eeveesLeft, setEeveesLeft] = useState([...EEVEES]);
+  const shuffledEevees = [...EEVEES];
+  shuffle(shuffledEevees);
+
+  const [bestScore, setBestScore] = useState(0);
+  const score = EEVEES.length - eeveesLeft.length;
+
+  function handleOnClick(eeveeClicked) {
+    if (eeveesLeft.includes(eeveeClicked)) {
+      const newScore = score + 1;
+      if (newScore >= EEVEES.length) {
+        setEeveesLeft([...EEVEES]);
+      } else {
+        setEeveesLeft(eeveesLeft.filter((eevee) => eevee !== eeveeClicked));
+      } 
+    
+      if (newScore > bestScore) {
+        setBestScore(newScore);
+      }
+    } else {
+      setEeveesLeft([...EEVEES]);
     }
-    setScores(newScores);
   }
   
   return (
@@ -28,16 +69,11 @@ function App() {
         <p>Get points by clicking on an image but don't click on any more than once!</p>
       </header>
       <main>
-        <Card name="eevee">Eevee</Card>
-        <Card name="eevee" isShiny={true}>Shiny Eevee</Card>
-        <Card name="vaporeon">Vaporeon</Card>
-        <Card name="jolteon">Jolteon</Card>
-        <Card name="flareon">Flareon</Card>
-        <Card name="espeon">Espeon</Card>
-        <Card name="umbreon">Umbreon</Card>
-        <Card name="leafeon">Leafeon</Card>
-        <Card name="glaceon">Glaceon</Card>
-        <Card name="sylveon">Sylveon</Card>
+        {
+          shuffledEevees.map(eevee => 
+            <Card name={eevee} key={eevee} handleOnClick={handleOnClick}>{ eevee[0].toUpperCase() + eevee.slice(1) }</Card>
+          )
+        }
       </main>
     </>
   )
