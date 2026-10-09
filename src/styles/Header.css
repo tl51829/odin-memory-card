@@ -25,3 +25,13 @@ header aside p {
     font-weight: bold;
     font-size: 0.9rem;
 }
+
+@media (width <= 600px) {
+    header section {
+        gap: 12px;
+    }
+
+    header aside {
+        white-space: nowrap;
+    }
+}

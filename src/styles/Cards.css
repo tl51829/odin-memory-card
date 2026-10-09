@@ -25,3 +25,9 @@ main figcaption {
     margin-bottom: 24px;
     margin-top: 8px;
 }
+
+@media (width <= 350px) {
+    main img {
+        width: 250px;
+    }
+}
